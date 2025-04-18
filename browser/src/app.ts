@@ -1,6 +1,13 @@
 import * as Game from './game'
 import { Board } from './board'
+import { initGameLocalAi } from './game/game-local-ai'
+import { initGameLocal2p } from './game/game-local-2p'
+import { initGameOnline2p } from './game/game-online-2p'
+import { displayStats } from './utils/stats'
 import './style.css'
+
+// 初始化统计显示
+displayStats();
 
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.querySelector('canvas')
