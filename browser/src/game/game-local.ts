@@ -5,6 +5,7 @@ import { Player, PlayerHuman, PlayerAi } from '@kenrick95/c4'
 import { getColumnFromCoord } from '@kenrick95/c4'
 import { showMessage } from '../utils/message'
 import { animationFrame } from '../utils/animate-frame'
+import { updateStats } from '../utils/stats'
 
 const statusbox = document.querySelector('.statusbox')
 const statusboxBodyGame = document.querySelector('.statusbox-body-game')
@@ -52,8 +53,20 @@ export class GameLocal extends GameBase {
     let message = '<h1>Thank you for playing.</h1>'
     if (winnerBoardPiece === BoardPiece.DRAW) {
       message += `It's a draw`
+      updateStats('draw')
     } else {
       message += `Player ${winnerBoardPiece} wins`
+      // 判断获胜者是人类还是 AI
+      const isPlayer1Win = winnerBoardPiece === BoardPiece.PLAYER_1
+      const isAgainstAI = this.players[1] instanceof PlayerAi
+      
+      if (isAgainstAI) {
+        if (isPlayer1Win) {
+          updateStats('human')
+        } else {
+          updateStats('ai')
+        }
+      }
     }
     message +=
       '.<br />After dismissing this message, click the board to reset game.'
