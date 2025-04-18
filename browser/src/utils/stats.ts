@@ -5,27 +5,19 @@ interface GameStats {
   draws: number;
 }
 
-const STATS_KEY = 'c4_game_stats';
+// 使用内存变量存储统计数据
+const stats: GameStats = {
+  totalGames: 0,
+  humanWins: 0,
+  aiWins: 0,
+  draws: 0
+};
 
 export function getStats(): GameStats {
-  const statsStr = localStorage.getItem(STATS_KEY);
-  if (statsStr) {
-    return JSON.parse(statsStr);
-  }
-  return {
-    totalGames: 0,
-    humanWins: 0,
-    aiWins: 0,
-    draws: 0
-  };
-}
-
-export function saveStats(stats: GameStats) {
-  localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+  return stats;
 }
 
 export function updateStats(result: 'human' | 'ai' | 'draw') {
-  const stats = getStats();
   stats.totalGames++;
   
   if (result === 'human') {
@@ -36,13 +28,10 @@ export function updateStats(result: 'human' | 'ai' | 'draw') {
     stats.draws++;
   }
   
-  saveStats(stats);
   displayStats();
 }
 
 export function displayStats() {
-  const stats = getStats();
-  
   document.getElementById('total-games')!.textContent = stats.totalGames.toString();
   document.getElementById('human-wins')!.textContent = stats.humanWins.toString();
   document.getElementById('ai-wins')!.textContent = stats.aiWins.toString();
