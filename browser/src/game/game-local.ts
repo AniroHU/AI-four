@@ -6,6 +6,7 @@ import { getColumnFromCoord } from '@kenrick95/c4'
 import { showMessage } from '../utils/message'
 import { animationFrame } from '../utils/animate-frame'
 import { updateStats } from '../utils/stats'
+import { updatePlayerRecord } from '../utils/leaderboard'
 
 const statusbox = document.querySelector('.statusbox')
 const statusboxBodyGame = document.querySelector('.statusbox-body-game')
@@ -51,9 +52,14 @@ export class GameLocal extends GameBase {
       return
     }
     let message = '<h1>Thank you for playing.</h1>'
+    const playerName = (document.getElementById('player-name') as HTMLInputElement)?.value || 'Unknown Player';
+    
     if (winnerBoardPiece === BoardPiece.DRAW) {
       message += `It's a draw`
       updateStats('draw')
+      if (this.players[1] instanceof PlayerAi) {
+        updatePlayerRecord(playerName, 'draw')
+      }
     } else {
       message += `Player ${winnerBoardPiece} wins`
       // 判断获胜者是人类还是 AI
@@ -63,8 +69,10 @@ export class GameLocal extends GameBase {
       if (isAgainstAI) {
         if (isPlayer1Win) {
           updateStats('human')
+          updatePlayerRecord(playerName, 'win')
         } else {
           updateStats('ai')
+          updatePlayerRecord(playerName, 'loss')
         }
       }
     }

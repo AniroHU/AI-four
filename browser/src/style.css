@@ -151,3 +151,52 @@ h2 {
   font-weight: bold;
   color: #333;
 }
+.player-name-input {
+  margin: 20px 0;
+}
+.player-name-input label {
+  display: block;
+  margin-bottom: 5px;
+}
+.player-name-input input {
+  padding: 8px;
+  width: 100%;
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.leaderboard {
+  margin: 30px auto;
+  max-width: 800px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+.leaderboard h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+.leaderboard table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.leaderboard th,
+.leaderboard td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+.leaderboard th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  color: #333;
+}
+.leaderboard tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.leaderboard tr:hover {
+  background-color: #f0f0f0;
+}

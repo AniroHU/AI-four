@@ -4,10 +4,12 @@ import { initGameLocalAi } from './game/game-local-ai'
 import { initGameLocal2p } from './game/game-local-2p'
 import { initGameOnline2p } from './game/game-online-2p'
 import { displayStats } from './utils/stats'
+import { displayLeaderboard } from './utils/leaderboard'
 import './style.css'
 
 // 初始化统计显示
 displayStats();
+displayLeaderboard();
 
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.querySelector('canvas')
@@ -31,6 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const modeChooser = document.querySelector('.mode-chooser-submit')
   if (modeChooser) {
     modeChooser.addEventListener('click', () => {
+      const playerNameInput = document.getElementById('player-name') as HTMLInputElement;
+      if (!playerNameInput.value.trim()) {
+        alert('请输入您的名字！');
+        return;
+      }
+
       const modeDOM = document.querySelector('.mode')
       if (modeDOM) {
         const modeInputDOMs = <NodeListOf<HTMLInputElement>>(
