@@ -4,7 +4,7 @@
 
 **c4**, stands for **Connect Four**, is a browser game written in TypeScript and utilizes HTML's `canvas`. Player is playing against an AI that uses Minimax algorithm and alpha-beta pruning. The evaluation function is hard-coded, and hence the AI may not be moving using the most optimal move.
 
-The original version of this game is from [kenrick](https://kenrick95.org/).
+The original version of this game is by [kenrick](https://kenrick95.org/). Fork this version at [Github](https://github.com/kenrick95/c4).
 
 ## Play
 
